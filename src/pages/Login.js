@@ -22,8 +22,9 @@ class Login extends React.Component {
 
   loginConditions = () => {
     const minLength = 6;
+    const emailConditions = /\S+@\S+\.\S+/;
     const { emailName, emailPassword } = this.state;
-    if (emailName.length >= minLength && emailPassword.length >= minLength) {
+    if (emailConditions.test(emailName) && emailPassword.length >= minLength) {
       this.setState({ loginButtonDisabled: false });
     } else {
       this.setState({ loginButtonDisabled: true });
