@@ -1,2 +1,8 @@
-// configure aqui sua store
-const store = 'começando'
+import { createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+// import thunk from 'redux-thunk';
+import rootReducer from './reducers';
+
+const store = createStore(rootReducer, composeWithDevTools());
+
+export default store;
