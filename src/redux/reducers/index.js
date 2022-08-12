@@ -5,8 +5,8 @@
 // ATENÇÃO: você obrigatoriamente tem que utilizar as chaves "user" e "wallet" no seu estado global
 
 import { combineReducers } from 'redux';
-import emailReducer from './emailReducer';
+import user from './user';
 
-const rootReducer = combineReducers({ emailReducer });
+const rootReducer = combineReducers({ user });
 
 export default rootReducer;
