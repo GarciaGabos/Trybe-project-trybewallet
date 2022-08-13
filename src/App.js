@@ -6,7 +6,7 @@ import Wallet from './pages/Wallet';
 function App() {
   return (
     <>
-      <p>TrybeWallet!</p>
+      <p>Trybe Wallet Manager</p>
       <Switch>
         <Route
           exact
