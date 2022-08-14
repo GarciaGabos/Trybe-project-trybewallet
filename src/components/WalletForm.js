@@ -94,8 +94,8 @@ class WalletForm extends Component {
                onChange={ this.onInputChange }
              >
                <option value="Dinheiro">Dinheiro</option>
-               <option value="Cartão de Crédito">Cartão de Crédito</option>
-               <option value="Cartão de Débito">Cartão de Débito</option>
+               <option value="Cartão de crédito">Cartão de crédito</option>
+               <option value="Cartão de débito">Cartão de débito</option>
              </select>
            </label>
 
@@ -111,6 +111,7 @@ class WalletForm extends Component {
                <option value="Lazer">Lazer</option>
                <option value="Trabalho">Trabalho</option>
                <option value="Saúde">Saúde</option>
+               <option value="Transporte">Transporte</option>
              </select>
            </label>
 
