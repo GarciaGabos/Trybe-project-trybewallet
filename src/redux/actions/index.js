@@ -60,3 +60,12 @@ export function expenseSaver(payload) {
     type: 'EXPENSES',
     expenses: payload };
 }
+
+// Ação para deleção de expenses
+
+export function deleteExpenseAction(id) {
+  return {
+    type: 'DELETE_EXPENSES',
+    id,
+  };
+}
