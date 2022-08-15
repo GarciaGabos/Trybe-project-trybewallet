@@ -15,8 +15,8 @@ class Header extends Component {
     const { userEmail, expenses } = this.props;
     const totalExpenses = expenses.reduce((total, expense) => (
       total
-        + Number(expense.valorDespesa)
-        * Number(expense.exchangeRates[expense.moedaUsada].ask)
+        + Number(expense.value)
+        * Number(expense.exchangeRates[expense.currency].ask)
     ), 0);
 
     return (
@@ -27,7 +27,6 @@ class Header extends Component {
           { userEmail }
         </p>
         <p data-testid="total-field">
-          Despesa total:
           {totalExpenses.toFixed(2)}
         </p>
         <p data-testid="header-currency-field">

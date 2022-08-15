@@ -8,11 +8,11 @@ class WalletForm extends Component {
     super();
     this.state = {
       id: -1,
-      valorDespesa: '',
-      descriçãoDespesa: '',
-      moedaUsada: 'USD',
-      metodoPagamento: 'Dinheiro',
-      tipoDespesa: 'Alimentação',
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Alimentação',
       exchangeRates: '',
     };
   }
@@ -35,16 +35,16 @@ class WalletForm extends Component {
      const idSum = id + 1;
      this.setState({ exchangeRates,
        id: idSum }, () => saveExpense(this.state));
-     this.setState({ valorDespesa: '', descriçãoDespesa: '' });
+     this.setState({ value: '', description: '' });
    }
 
    render() {
      const {
-       valorDespesa,
-       descriçãoDespesa,
-       moedaUsada,
-       metodoPagamento,
-       tipoDespesa,
+       value,
+       description,
+       currency,
+       method,
+       tag,
      } = this.state;
 
      const {
@@ -60,8 +60,8 @@ class WalletForm extends Component {
              <input
                data-testid="value-input"
                type="number"
-               name="valorDespesa"
-               value={ valorDespesa }
+               name="value"
+               value={ value }
                onChange={ this.onInputChange }
              />
            </label>
@@ -70,8 +70,8 @@ class WalletForm extends Component {
              Descrição da despesa:
              <textarea
                data-testid="description-input"
-               name="descriçãoDespesa"
-               value={ descriçãoDespesa }
+               name="description"
+               value={ description }
                onChange={ this.onInputChange }
              />
            </label>
@@ -80,8 +80,8 @@ class WalletForm extends Component {
              Moeda usada:
              <select
                data-testid="currency-input"
-               name="moedaUsada"
-               value={ moedaUsada }
+               name="currency"
+               value={ currency }
                onChange={ this.onInputChange }
              >
                {
@@ -102,8 +102,8 @@ class WalletForm extends Component {
              Método de pagamento:
              <select
                data-testid="method-input"
-               name="metodoPagamento"
-               value={ metodoPagamento }
+               name="method"
+               value={ method }
                onChange={ this.onInputChange }
              >
                <option value="Dinheiro">Dinheiro</option>
@@ -116,8 +116,8 @@ class WalletForm extends Component {
              Tipo de despesa:
              <select
                data-testid="tag-input"
-               name="tipoDespesa"
-               value={ tipoDespesa }
+               name="tag"
+               value={ tag }
                onChange={ this.onInputChange }
              >
                <option value="Alimentação">Alimentação</option>
