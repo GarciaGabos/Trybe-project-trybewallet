@@ -14,9 +14,7 @@ class Header extends Component {
     const { cambio } = this.state;
     const { userEmail, expenses } = this.props;
     const totalExpenses = expenses.reduce((total, expense) => (
-      total
-        + Number(expense.value)
-        * Number(expense.exchangeRates[expense.currency].ask)
+      total + Number(expense.value) * Number(expense.exchangeRates[expense.currency].ask)
     ), 0);
 
     return (
