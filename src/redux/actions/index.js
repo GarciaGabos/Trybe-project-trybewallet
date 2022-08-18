@@ -69,3 +69,13 @@ export function deleteExpenseAction(id) {
     id,
   };
 }
+
+export const editExpense = (expenses) => ({
+  type: 'UPDATE_EXPENSE',
+  expenses,
+});
+
+export const setIdToEdit = (id) => ({
+  type: 'ID_TO_EDIT',
+  id,
+});

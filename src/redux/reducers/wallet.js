@@ -3,6 +3,9 @@ const INITIAL_STATE = {
   currencies: [],
   exchangeRates: {},
   expenses: [],
+  editor: false,
+  numberExpenses: 0,
+  idToEdit: 0,
 };
 
 const wallet = (state = INITIAL_STATE, action) => {
@@ -27,6 +30,15 @@ const wallet = (state = INITIAL_STATE, action) => {
       ...state,
       expenses: [...state.expenses].filter((expense) => expense.id !== action.id),
     };
+  case 'UPDATE_EXPENSE':
+    return {
+      ...state,
+      expenses: [...action.expenses],
+      editor: false,
+      idToEdit: null,
+    };
+  case 'ID_TO_EDIT':
+    return { ...state, idToEdit: action.id, editor: true };
   default:
     return state;
   }
