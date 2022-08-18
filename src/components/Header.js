@@ -22,15 +22,14 @@ class Header extends Component {
         <div>Header</div>
         <p data-testid="email-field">
           Email:
-          { userEmail }
+          {String(userEmail)}
         </p>
         <p data-testid="total-field">
           {totalExpenses.toFixed(2)}
         </p>
         <p data-testid="header-currency-field">
           Moeda:
-          {' '}
-          { cambio }
+          {cambio}
         </p>
       </>
     );
@@ -38,7 +37,7 @@ class Header extends Component {
 }
 
 Header.propTypes = {
-  userEmail: PropTypes.string.isRequired,
+  userEmail: PropTypes.objectOf(PropTypes.string).isRequired,
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
