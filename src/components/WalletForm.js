@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { fetchCurrencies, editExpense,
-  fetchExchangeRates, expenseSaver } from '../redux/actions';
+import { fetchCurrencies,
+  editExpense,
+  saveWallet,
+  fetchExchangeRates,
+  // expenseSaver
+} from '../redux/actions';
 
 class WalletForm extends Component {
   constructor() {
     super();
     this.state = {
-      id: -1,
+      // id: -1,
       value: '',
       description: '',
       currency: 'USD',
@@ -28,16 +32,28 @@ class WalletForm extends Component {
      this.setState({ [name]: value });
    }
 
-   handleClick = async () => {
-     const { saveExpense, getExchangerates } = this.props;
-     await getExchangerates();
-     const { exchangeRates } = this.props;
-     const { id } = this.state;
-     const idSum = id + 1;
-     this.setState({ exchangeRates,
-       id: idSum }, () => saveExpense(this.state));
-     this.setState({ value: '', description: '' });
-   }
+   //  handleClick = async () => {
+   //    const { saveExpense, getExchangerates } = this.props;
+   //    await getExchangerates();
+   //    const { exchangeRates } = this.props;
+   //    const { id } = this.state;
+   //    const idSum = id + 1;
+   //    this.setState({ exchangeRates,
+   //      id: idSum }, () => saveExpense(this.state));
+   //    this.setState({ value: '', description: '' });
+   //  }
+
+  handleClick = () => {
+    const { saveWalletState } = this.props;
+    saveWalletState(this.state);
+    this.setState({
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: 'Aimentação',
+    });
+  }
 
    handleEditClick = () => {
      const { expenses, idToEdit, updateExpenses } = this.props;
@@ -173,19 +189,20 @@ class WalletForm extends Component {
 WalletForm.propTypes = {
   currencies: PropTypes.arrayOf(PropTypes.string).isRequired,
   getCurrencies: PropTypes.func.isRequired,
-  getExchangerates: PropTypes.func.isRequired,
-  saveExpense: PropTypes.func.isRequired,
-  exchangeRates:
-    PropTypes.objectOf(
-      PropTypes.objectOf(
-        PropTypes.string,
-      ),
-    )
-      .isRequired,
+  // getExchangerates: PropTypes.func.isRequired,
+  // saveExpense: PropTypes.func.isRequired,
+  // exchangeRates:
+  //   PropTypes.objectOf(
+  //     PropTypes.objectOf(
+  //       PropTypes.string,
+  //     ),
+  //   )
+  //     .isRequired,
   editor: PropTypes.bool.isRequired,
   expenses: PropTypes.arrayOf(PropTypes.object).isRequired,
   idToEdit: PropTypes.number,
   updateExpenses: PropTypes.func.isRequired,
+  saveWalletState: PropTypes.func.isRequired,
 };
 
 WalletForm.defaultProps = {
@@ -197,6 +214,7 @@ const mapDispatchToProps = (dispatch) => ({
   getExchangerates: () => dispatch(fetchExchangeRates()),
   saveExpense: (expenseInfo) => dispatch(expenseSaver(expenseInfo)),
   updateExpenses: (expenses) => dispatch(editExpense(expenses)),
+  saveWalletState: (object) => dispatch(saveWallet(object)),
 });
 
 const mapStateToProps = (store) => ({

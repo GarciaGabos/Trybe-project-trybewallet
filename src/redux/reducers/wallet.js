@@ -20,10 +20,19 @@ const wallet = (state = INITIAL_STATE, action) => {
       ...state,
       exchangeRates: action.exchangeRates,
     };
-  case 'EXPENSES':
+  // case 'EXPENSES':
+  //   return {
+  //     ...state,
+  //     expenses: [...state.expenses, action.expenses],
+  //   };
+  case 'WALLET_OBJECT':
     return {
       ...state,
-      expenses: [...state.expenses, action.expenses],
+      expenses: [...state.expenses, {
+        id: state.idToEdit,
+        ...action.payload,
+        exchangeRates: action.exchangeRates }],
+      idToEdit: state.idToEdit + 1,
     };
   case 'DELETE_EXPENSES':
     return {

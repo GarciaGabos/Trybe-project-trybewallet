@@ -5,10 +5,11 @@ export default function emailSaver(payload) {
     email: payload };
 }
 
+const url = 'https://economia.awesomeapi.com.br/json/all';
 // Ações envolvidas em pegar os tipos de moedas
 
 const fetchAPIcurrencies = async () => {
-  const currencies = await fetch('https://economia.awesomeapi.com.br/json/all');
+  const currencies = await fetch(url);
   const currenciesJson = await currencies.json();
   const withoutUSDT = Object.keys(currenciesJson).filter((element) => element !== 'USDT');
   // const arrayOfObj = Object.entries(currenciesJson).map((e) => ({ [e[0]]: e[1] }));
@@ -32,7 +33,7 @@ export function fetchCurrencies() {
 // Ações envolvidas em pegar as taxas de câmbio;
 
 const fetchAPIRates = async () => {
-  const currencies = await fetch('https://economia.awesomeapi.com.br/json/all');
+  const currencies = await fetch(url);
   const currenciesJson = await currencies.json();
   // const arrayCorrec = Object.keys(currenciesJson).filter((element) => element !== 'USDT');
   // const arrayOfObj = Object.entries(currenciesJson).map((e) => ({ [e[0]]: e[1] }));
@@ -55,11 +56,18 @@ export function fetchExchangeRates() {
 
 // Ação envolvida para salvar as expenses individuais;
 
-export function expenseSaver(payload) {
-  return {
-    type: 'EXPENSES',
-    expenses: payload };
-}
+// export function expenseSaver(payload) {
+//   return {
+//     type: 'EXPENSES',
+//     expenses: payload };
+// }
+
+export const saveWallet = (payload) => (dispatch) => fetch('https://economia.awesomeapi.com.br/json/all')
+  .then((response) => response.json())
+  .then((data) => dispatch({
+    type: 'WALLET_OBJECT',
+    payload,
+    exchangeRates: data }));
 
 // Ação para deleção de expenses
 
